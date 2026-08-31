@@ -3,15 +3,181 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Produkt SimteGen</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.6; }
-  </style>
+  <title>Vizitka pro řemeslníka</title>
+  <link rel="stylesheet" href="styl.css">
 </head>
 <body>
-  <h1>Produkt SimteGen</h1>
-  <p>Tahle stránka je zárodek ze šablony — stavitel ji nahradí skutečným
-  nástrojem. Stránka musí být ten nástroj, ne stránka o nástroji.</p>
-  <p><a href="zasady.html">Zásady ochrany údajů</a></p>
+
+<header class="hlavicka">
+  <h1>Vizitka pro řemeslníka</h1>
+  <p>Vyplňte formulář — vpravo rovnou vidíte, jak bude vaše stránka vypadat.
+  Nakonec si ji stáhnete jako jediný soubor <code>vizitka.html</code>, který
+  stačí nahrát na hosting. Nic z toho, co sem napíšete, ani žádná fotka
+  neopustí váš prohlížeč.</p>
+</header>
+
+<div class="rozvrzeni">
+
+  <form id="formular" class="sloupec-formular" novalidate>
+
+    <section class="sekce">
+      <h2>Kdo jste</h2>
+      <p class="napoveda">Tohle uvidí návštěvník jako první.</p>
+      <div class="pole">
+        <label for="jmeno">Jméno nebo název firmy</label>
+        <input type="text" id="jmeno" data-pole="jmeno" autocomplete="off"
+               placeholder="Petr Novák">
+      </div>
+      <div class="dvojice">
+        <div class="pole">
+          <label for="obor">Obor</label>
+          <input type="text" id="obor" data-pole="obor" autocomplete="off"
+                 placeholder="Truhlář">
+        </div>
+        <div class="pole">
+          <label for="mesto">Město</label>
+          <input type="text" id="mesto" data-pole="mesto" autocomplete="off"
+                 placeholder="Zlín">
+        </div>
+      </div>
+      <div class="pole">
+        <label for="slogan">Jedna věta o tom, co děláte</label>
+        <input type="text" id="slogan" data-pole="slogan" autocomplete="off"
+               placeholder="Kuchyně a vestavěné skříně na míru, od návrhu po montáž.">
+      </div>
+    </section>
+
+    <section class="sekce">
+      <h2>Něco o vás</h2>
+      <p class="napoveda">Pár vět vlastními slovy. Prázdný řádek dělá nový odstavec.</p>
+      <div class="pole">
+        <label for="popis">Text</label>
+        <textarea id="popis" data-pole="popis"
+                  placeholder="Řemeslu se věnuju patnáct let…"></textarea>
+      </div>
+    </section>
+
+    <section class="sekce">
+      <h2>Co děláte</h2>
+      <p class="napoveda">Krátké body. Zákazník podle nich pozná, jestli jste ten pravý.</p>
+      <div id="sluzby-seznam"></div>
+      <p><button type="button" class="tlac tlac-male" id="pridat-sluzbu">
+        + Přidat službu</button></p>
+    </section>
+
+    <section class="sekce">
+      <h2>Realizace</h2>
+      <p class="napoveda">Nejsilnější část vizitky. Fotky se zmenší přímo tady
+      v prohlížeči a zapečou se do výsledného souboru — nikam se neodesílají.
+      Nejvýš 10 fotek.</p>
+      <div class="pole">
+        <label for="fotky-vstup">Vyberte fotky</label>
+        <input type="file" id="fotky-vstup" accept="image/*" multiple>
+        <p class="pod">Fotky z iPhonu ve formátu HEIC prohlížeč na počítači
+        neumí otevřít — uložte je prosím jako JPEG.</p>
+      </div>
+      <ul class="fotky" id="fotky-seznam"></ul>
+    </section>
+
+    <section class="sekce">
+      <h2>Kontakt</h2>
+      <p class="napoveda">Bez telefonu nebo e-mailu se zákazník neozve.</p>
+      <div class="dvojice">
+        <div class="pole">
+          <label for="telefon">Telefon</label>
+          <input type="tel" id="telefon" data-pole="telefon" autocomplete="off"
+                 placeholder="+420 601 234 567">
+        </div>
+        <div class="pole">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" data-pole="email" autocomplete="off"
+                 placeholder="petr@example.cz">
+        </div>
+      </div>
+      <div class="pole">
+        <label for="oblast">Kde pracujete</label>
+        <input type="text" id="oblast" data-pole="oblast" autocomplete="off"
+               placeholder="Zlín a okolí do 40 km">
+      </div>
+      <div class="dvojice">
+        <div class="pole">
+          <label for="hodiny">Kdy vás zastihnou</label>
+          <input type="text" id="hodiny" data-pole="hodiny" autocomplete="off"
+                 placeholder="Po–Pá 7:00–17:00">
+        </div>
+        <div class="pole">
+          <label for="ico">IČO</label>
+          <input type="text" id="ico" data-pole="ico" autocomplete="off"
+                 placeholder="12345678">
+        </div>
+      </div>
+    </section>
+
+    <section class="sekce">
+      <h2>Barva</h2>
+      <p class="napoveda">Vyberte si, co sedí k vašemu řemeslu.</p>
+      <div class="barvy" id="barvy"></div>
+      <p class="pole">
+        <label class="prepinac">
+          <input type="checkbox" id="podpis" data-pole="podpis" checked>
+          Nechat v patičce drobnou zmínku, čím je vizitka vyrobená
+        </label>
+      </p>
+    </section>
+
+    <section class="sekce">
+      <h2>Adresa a QR kód</h2>
+      <p class="napoveda">Až budete mít vizitku nahranou, vepište sem její adresu.
+      QR kód pak můžete vytisknout a nalepit na dodávku nebo papírovou vizitku.
+      Adresu jde kdykoli změnit a kód vygenerovat znovu.</p>
+      <div class="pole">
+        <label for="adresa">Adresa vizitky</label>
+        <input type="url" id="adresa" data-pole="adresa" autocomplete="off"
+               placeholder="https://novak-truhlar.cz">
+      </div>
+      <div class="qr-plocha">
+        <div class="qr-ramecek" id="qr-ramecek" hidden></div>
+        <div class="qr-akce" id="qr-akce" hidden>
+          <button type="button" class="tlac tlac-male" id="qr-svg">Stáhnout SVG</button>
+          <button type="button" class="tlac tlac-male" id="qr-png">Stáhnout PNG</button>
+          <button type="button" class="tlac tlac-male" id="qr-tisk">Vytisknout</button>
+        </div>
+      </div>
+      <p class="hlaska spatne" id="qr-hlaska" hidden></p>
+    </section>
+
+  </form>
+
+  <aside class="sloupec-nahled">
+    <div class="nahled-panel">
+      <div class="nahled-lista">
+        <strong>Náhled hotové vizitky</strong>
+        <span class="velikost" id="velikost"></span>
+      </div>
+      <iframe class="nahled" id="nahled" title="Náhled vizitky"></iframe>
+      <div class="nahled-akce">
+        <button type="button" class="tlac tlac-hlavni" id="stahnout">Stáhnout vizitku</button>
+        <button type="button" class="tlac" id="nacist">Načíst rozpracovanou</button>
+        <button type="button" class="tlac" id="ukazka">Vyplnit ukázkou</button>
+        <button type="button" class="tlac tlac-tichy" id="vycistit">Vymazat vše</button>
+      </div>
+      <p class="hlaska" id="hlaska" hidden></p>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="paticka">
+  <p>Nástroj běží celý ve vašem prohlížeči. Nepotřebuje připojení k internetu
+  a nic si nikam neukládá — když zavřete okno, rozdělaná práce zmizí, proto si
+  vizitku průběžně stahujte. <a href="zasady.html">Zásady ochrany údajů</a></p>
+</footer>
+
+<input type="file" id="import-vstup" accept=".html,text/html" hidden>
+<div class="tisk-list" id="tisk-list" aria-hidden="true"></div>
+
+<script src="qr.js"></script>
+<script src="sablona-vizitky.js"></script>
+<script src="nastroj.js"></script>
 </body>
 </html>
