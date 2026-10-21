@@ -6,5 +6,6 @@
   "uloziste_v_prohlizeci": [],
   "cookies": "zadne",
   "subzpracovatele": [],
-  "poznamka": "Jediny zdroj pravdy o datech produktu. Zasady na webu se pisou podle nej a kontrola_manifestu.py shazuje build, kdyz kod sahne na neco, co tu neni deklarovane."
+  "poznamka": "Jediny zdroj pravdy o datech produktu. Zasady na webu se pisou podle nej a kontrola_manifestu.py shazuje build, kdyz kod sahne na neco, co tu neni deklarovane.",
+  "kontakt_email": "support@simtegen.com"
 }
